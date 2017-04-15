@@ -1,0 +1,17 @@
+{
+	"myimages":
+	[
+		{"x1": 20, "width": 50, "label": "coffee", "correct": "no answer", "height": 50, "jpeg_file": "frame0.jpg", "y1": 5}, 
+		{"x1": 20, "width": 50, "label": "coffee", "correct": "no answer", "height": 50, "jpeg_file": "frame1.jpg", "y1": 5}, 
+		{"x1": 20, "width": 50, "label": "coffee", "correct": "no answer", "height": 50, "jpeg_file": "frame2.jpg", "y1": 5}, 
+		{"x1": 20, "width": 50, "label": "coffee", "correct": "no answer", "height": 50, "jpeg_file": "frame3.jpg", "y1": 5}, 
+		{"x1": 20, "width": 50, "label": "coffee", "correct": "no answer", "height": 50, "jpeg_file": "frame4.jpg", "y1": 5}, 
+		{"x1": 20, "width": 50, "label": "coffee", "correct": "no answer", "height": 50, "jpeg_file": "frame5.jpg", "y1": 5}, 
+		{"x1": 20, "width": 50, "label": "coffee", "correct": "no answer", "height": 50, "jpeg_file": "frame6.jpg", "y1": 5}, 
+		{"x1": 20, "width": 50, "label": "coffee", "correct": "no answer", "height": 50, "jpeg_file": "frame7.jpg", "y1": 5}, 
+		{"x1": 20, "width": 50, "label": "coffee", "correct": "no answer", "height": 50, "jpeg_file": "frame8.jpg", "y1": 5}, 
+		{"x1": 20, "width": 50, "label": "coffee", "correct": "no answer", "height": 50, "jpeg_file": "frame9.jpg", "y1": 5} 
+	]
+
+ 
+}
