@@ -19,7 +19,13 @@ window.onload = function() {
 	var parentContainer = document.getElementById("parent");
 	var intViewportWidth = window.innerWidth;
 	var container = document.createElement("container");
+	
+	console.log("hello world!")
+	var newImg = document.createElement("img");
+	newImg.src = "./visual_files/frames0.jpg";
+	/*
 	$.getJSON("visual_data_UI.json", function(data) {
+		console.log(data); 
 		var L = data["myimages"];
 		console.log(L);
 		for (var i = 0; i < L.length ; i++) {
@@ -35,8 +41,9 @@ window.onload = function() {
 			var box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
 			var w = L[i]['width'];
 			var h = L[i]['height'];
-			var y = L[i]['y1'];
-			var x = L[i]['x1'];
+			var y = L[i]['y'];
+			var x = L[i]['x'];
+			console.log(w, h, y, x)
 			newSvg.setAttribute('width', newImg.width);
 			newSvg.setAttribute('height', newImg.height);
 
@@ -70,5 +77,5 @@ window.onload = function() {
 			
 		}
 		parentContainer.appendChild(container);
-	});
+	});*/
 }
