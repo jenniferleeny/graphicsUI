@@ -22,8 +22,10 @@ window.onload = function() {
 	
 	console.log("hello world!")
 	var newImg = document.createElement("img");
-	newImg.src = "./visual_files/frames0.jpg";
-	/*
+	newImg.src = "./visual_files/frame0.jpg";
+	var src = document.createElement("div");
+	src.appendChild(newImg);
+/*
 	$.getJSON("visual_data_UI.json", function(data) {
 		console.log(data); 
 		var L = data["myimages"];
