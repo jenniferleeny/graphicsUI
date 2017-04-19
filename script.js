@@ -1,51 +1,48 @@
-/*window.onload = function() {
 
-	var container = document.getElementById("img-container");
-	$.getJSON("visual_data_UI.json", function(data) {getJSON is a string -> object
-		var L = data["myimages"];
-		for (var i = 0; i < L.length; i++) {
-			var newElt = document.createElement("img");
-			newElt.src = "./visual_files/" + L[i]["jpeg_file"];
-			newElt.height = 200;
-			newElt.width = 200;
-
-			container.appendChild(newElt);
-		}
-	});
-}
-*/
 
 window.onload = function() {
+	var selectedFrames = new Set();
+	//output all the frames
 	var parentContainer = document.getElementById("parent");
 	var intViewportWidth = window.innerWidth;
 	var container = document.createElement("container");
-	
-	console.log("hello world!")
-	var newImg = document.createElement("img");
-	newImg.src = "./visual_files/frame0.jpg";
-	var src = document.createElement("div");
-	src.appendChild(newImg);
-/*
 	$.getJSON("visual_data_UI.json", function(data) {
+		console.log("About to request JSON");
 		console.log(data); 
 		var L = data["myimages"];
 		console.log(L);
 		for (var i = 0; i < L.length ; i++) {
 			var itemContainer = document.createElement("item");
-			//itemContainer.setAttribute("order", i);
 			//set image object
 			var newImg = document.createElement("img");
 			newImg.src = "./visual_files/" + L[i]["jpeg_file"];
-			newImg.height = 200;
-			newImg.width = 200;
+			newImg.id = "a" + (L[i]["id"]).toString();
+    		console.log("ID: #" + newImg.id);
+    		newImg.addEventListener("click", function(e) {
+    			console.log("addEventListener fired on " +e.target);
+    			if (e.target.className == "") {
+    				selectedFrames.add(i);
+    				e.target.className = "selected";
+    			} else {
+    				selectedFrames.delete(i);
+    				e.target.className = "";
+    			}
+    			
+    		});
+			var xfactor = 200/newImg.naturalHeight;
+			var yfactor = 300/newImg.naturalWidth;
+			//console.log(xfactor, yfactor);
+			newImg.height = 200; 
+			newImg.width = 300;
 			//set svg object
 			var newSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 			var box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-			var w = L[i]['width'];
-			var h = L[i]['height'];
-			var y = L[i]['y'];
-			var x = L[i]['x'];
-			console.log(w, h, y, x)
+			var w = Math.round(yfactor * L[i]['width']);
+			var h = Math.round(xfactor * L[i]['height']);
+			var y = Math.round(yfactor * L[i]['y']);
+			var x = Math.round(xfactor * L[i]['x']);
+			console.log(L[i]['width'], L[i]['height'], L[i]['y'], L[i]['x']);
+			console.log(w, h, y, x);
 			newSvg.setAttribute('width', newImg.width);
 			newSvg.setAttribute('height', newImg.height);
 
@@ -57,6 +54,7 @@ window.onload = function() {
 			box.setAttribute("height", h);
 			box.setAttribute("y", y);
 			box.setAttribute("x", x);
+			//console.log(box.width, box.height, box.y, box.x);
 			newSvg.appendChild(box);
 			//set div objects
 			var divImg = document.createElement("div"); divImg.className = "floatTL"; 
@@ -67,17 +65,20 @@ window.onload = function() {
 			var margin = 5;
 			var max = Math.floor(intViewportWidth/(margin+imgWidth));
 			divImg.style.left = 5+(imgWidth+margin)*(i%max) +'px'; 
-			divSvg.style.left = 5+(imgWidth+margin)*(i%max) +'px';
-			console.log(divImg.style.left);
-			divImg.style.top =  150+205*Math.floor(i/max) +'px';
-			divSvg.style.top =  150+205*Math.floor(i/max) +'px';
+			divSvg.style.left = 5+(imgWidth+margin)*(i%max) +'px'
+			divImg.style.top =  150+(imgHeight+margin)*Math.floor(i/max) +'px';
+			divSvg.style.top =  150+(imgHeight+margin)*Math.floor(i/max) +'px'
+			//console.log(divImg.style.left, divSvg.style.left);
+			//console.log(divImg.style.top, divSvg.style.top);
 			divImg.appendChild(newImg);
 			divSvg.appendChild(newSvg);
-			itemContainer.appendChild(divImg);
 			itemContainer.appendChild(divSvg);
+			itemContainer.appendChild(divImg);
+
+			console.log(itemContainer);
 			container.appendChild(itemContainer);
 			
 		}
 		parentContainer.appendChild(container);
-	});*/
+	});
 }

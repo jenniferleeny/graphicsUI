@@ -20,11 +20,17 @@
 </style>
 
 <div id="button_t">
-<button class="button">Previou Page</button>
-<button class="button">Submit Photos</button>
-<button class="button">Next Page</button>
+<form action="" method="get">
+<button class="button">Previous Page</button>
+  <button name="submit" type="submit" id = "submit">Submit Photos</button>
+  <button class="button">Next Page</button>
+</form>
 </div>
 
+<!--
+<div class="selected">
+<img src = "./visual_files/frame0.jpg">
+</div>
 <div class ="floatTL">
     <p>
         This is the <br>
@@ -33,7 +39,6 @@
         SVG placed over<br>
     </p>
 </div>
-
 <div class="floatTL">
     <svg xmlns="https://www.w3.org/TR/SVG11/" version="1.1"
        width="200px" height="200px">
@@ -41,66 +46,7 @@
           fill="none" stroke="black" stroke-width="4"/>
     </svg>  
 </div>
-
+-->
 <div id = "parent">
 </div>
-
-
-<!--
-<div>
-<section class="indent-1">
-	<section class= "imgcontainer">		
-		<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVgUhyPzYN2gHvlp_jNis6nlpeOm0ux07OIhyH6GDmoqoHG5DoGg"/>
-		<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcR1lGrURbbm1ldh8wx9I9OTEirjZ_ZEpZ5_lkh9oRQdzVl5P8F_"/>
-		<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSuesFxt541htR-k_v21-Hn8idTi8CFxMq9hzWU9Lkmzd_fcxXE"/>
-		<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcT9ahlOV8yFbDgzHu2Pppi8QiqfNZLIrHDBVFolr4k_ES5yzQWc"/>
-		<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQt01W7sk2ENLr-CFm3SAlD69zjeW5CxU8YbR6hc-vz4-uWiRh1EA"/>
-		<img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTLUOKIfOjzrw4xl1DF_xMBwwWbUxkFqNojFEQFhkOw9J5rjzIEzw"/>
-		<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSgSHt_eNeOtwj7YfD2pzb936T-p967kHRdSVz0rFAijRxQtCP_Kg"/>
-		<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcSuAsBJI4OGCkXhp1wWt6hq7DWwKQN9KL8Lq58f3_d1WH1t1Edf"/>
-		<img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSzijILHfVvazhNJF9LQaHbOndEv-XzFCfZYtE3jMH4CZQF_oYwzA"/>
-		<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQ3ft2XoyDPL7Nt8JQBgUKhANkoKRgijNMF7Mg9GtCmnken0r_9nw"/>
-		<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS9mo0JVTs2Pvnc5v5KDxwBSCw3VHZ5fAMSSZIHyYN7Ac9eec50DA"/>
-		<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS_kI9_JqAXLig08HI_eS69-2vJ09gd9bcXhArdhQXL4m2yA0c8"/>
-		<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRAAV75WFxtX4hsB8X1V8PaPnbpJpQ0bMti8k1V1pHxDzsYvB3QQ"/>
-		<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRFkWvqmRM5HWkFE8Pylo3tYZG26oJjR8TriKGHgTszlQJ47ha3"/>
-		<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSKBWBm4xbDjEDIAt3zNyP6n46KNhs9oinZz9vAvCPgeMr26nT9"/>
-		<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcStSJks4TOMEW2gXH5vbccA08BapXb0tfyYuuuoq6M4Yfe0bMOy"/>
-		<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiWNr9Yqf2emIKci0HuGAO6GUfDdF_CHOPo-vY6XdabqLq332U"/>
-		<img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRtgy86HOMUkis3UXCcoms9804OjkksCYBcX9aK7YS200MFUQAj9w"/>
-		<img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcS7rToSv8QwhJm11KS8yFGP5PRuD-tDP3xl90Y9wEMQWacA692O"/>
-		<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcS9J_mzDpnzpQ1URt-v48iGt52DxmVZIDxr7pqzTxGBLF-DQe2Wsw"/>
-		<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQfgKv9zJoL3g-NxkxxacceMRXCdOjkUTbNdvwqhmH76Up1uVai"/>
-		<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTcKJTHWbemfuV1xQfFfW_bG8mR2qoG0Y2xpwfNnopljnde_Vwg"/>
-		<img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSoFgAHA_7q2ytfJ_bQKrhX-sh8goxrkGQ7MCpnNHGjbPJuo0yw"/>
-		<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcR_ZpIAmpLyTCpoUJxx-NyN65LIbV56itJqlDy7a6e9voDytRnIVw"/>
-		<img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQPJKAdxU-yM1mja5IW29si_yc7iHxoennOJGAujCrMnuACurpb"/>
-		<img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTVsVLM1WZCgWPzW5j3feNsTPBSLDDxozCCNmEwJjAylHpgv3onfA"/>
-		<img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTzlfyMt-MMxy8gSsax4VKVpxNPihIR5jiO-4iK_pVUZ55MwmBP"/>
-		<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDBCDHM_spGT2uO9bcMKXZcb2jDUbAtBNasIR7o7iR2N5Qp-aC5Q"/>
-		<img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRhBns64VeRli0AIPQEUIUT0V_Gnh6a_NVW3wsfhsk0JiSEBfCx6Q"/>
-		<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRvmP8hTd8u1p5aBqprRTBHOjbyTF2cyoDQAelBbvGxrgXMcmPSkg"/>
-		<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_B4Ds23i9f5K2_oyFaHiIFxo1upGHoQ9b29xxhdPnOqbrCzyf"/>
-		<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTjMplza_ivh5B8OI8DGAQ4_wg4ThB_2KJPd9jto06BvfUoIoAN"/>
-		<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCSXwe5N41EJ-kMycnkdf5xelAmUioHMlI824J7NDxP_IAIHzz"/>
-		<img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcRM4u28gSvhEq1MKDGlXQXb7tM-gA6FE8JVJ6zQepIacDqzjK1dEg"/>
-		<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxC1Y3kzxcj-Yinxkgau94E7tsk2YgQfraLJ7tSqaGvQqhLc-38w"/>
-		<img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRcgRFBT5FaqDFFWq1nz6Zb8iaVXshFLdIGL2igcSVquw06OAYv"/>
-		<img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTt8os_4baPMfFyp1T0IO6GtThQ_XbeiDAP-fKa7LaEwvNfWzCbdA"/>
-		<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKu0N0bZ5pZkeBQCC5ws5CQNy2WM3SITdU-d4xrJKwKJrlFQSteg"/>
-		
-	</section>
-	<section class="imgcontainer">
-		
-		<img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png"/>
-		<img src="https://www.google.com/images/kg/social/fb_32x32.png"/>
-		<img src="https://www.google.com/images/kg/social/twitter_32x32.png"/>
-		<img src="https://www.google.com/images/kg/social/gplus_32x32.png"/>
-		<img src="https://www.google.com/images/icons/material/system/1x/email_grey600_24dp.png"/>
-	</section>
-	
-</section>
-</div>
--->
-
 </html>
