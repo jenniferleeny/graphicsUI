@@ -1,5 +1,4 @@
 
-/*
 window.onload = function() {
 	var selectedFrames = new Set();
 	//output all the frames
@@ -82,7 +81,7 @@ window.onload = function() {
 		parentContainer.appendChild(container);
 	});
 }
-*/
+
 function getImages(){
 	//find all selected images using jquery => store into something
 	console.log("HELLO WORLD");
