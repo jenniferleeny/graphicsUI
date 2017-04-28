@@ -85,16 +85,16 @@ window.onload = function() {
 function getImages(){
 	//find all selected images using jquery => store into something
 	console.log("HELLO WORLD");
-	var selectedFrames = $('#parent').find('.selected');
-	console.log(selectedFrames);
-	var jsonArray = JSON.stringify(selectedFrames);
-	//var testData = {foo: "Hello", bar: "World"};
-	console.log(jsonArray);
+	//var selectedFrames = $('#parent').find('.selected');
+	//console.log(selectedFrames);
+	//var jsonArray = JSON.stringify(selectedFrames);
+	var testData = {foo: "Hello", bar: "World"};
+	console.log(testData);
 	$.ajax({
         url: '/updateFrames',
-        data: jsonArray, //testData,
+        data: testData,
         datatype: "json",
-        method: 'POST',
+        type: 'POST',
         success: function(response) {
             console.log(response);
         },
