@@ -93,8 +93,9 @@ function getImages(){
 	console.log(testData);
 	$.ajax({
         url: '/updateFrames',
-        data: testData, //$('fo);').serialize(), 
-        type: 'POST',
+        data: testData,
+        datatype: "json",
+        method: 'POST',
         success: function(response) {
             console.log(response);
         },

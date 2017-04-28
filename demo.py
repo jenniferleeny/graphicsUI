@@ -50,8 +50,8 @@ def homepage():
 @app.route("/updateFrames", methods=['POST'])
 def updateFrames():
     print("C'S GET DEGREES")
-    #print(request)
-
+    print(request)
+    return render_template("visual_data_UI.html")
 	#selectedFrames = request.form["selectedImages"]
 	#print(selectedFrames)
 	#ta = get_db()
