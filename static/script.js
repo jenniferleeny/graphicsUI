@@ -90,7 +90,7 @@ function getImages(){
 	//console.log(selectedFrames);
 	//var jsonArray = JSON.stringify(selectedFrames);
 	var testData = {foo: "Hello", bar: "World"};
-	console.log("HELLO WORLD");
+	console.log(testData);
 	$.ajax({
         url: '/updateFrames',
         data: testData, //$('fo);').serialize(), 
