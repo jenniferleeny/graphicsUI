@@ -120,11 +120,11 @@ def homepage():
 
 @app.route("/updateFrames", methods=['POST'])
 def updateFrames():
-	print("BOW DOWN BITCHES")
-	#print(request)
-	#selectedFrames = request.form["selectedImages"]
-	#print(selectedFrames)
-	#ta = get_db()
+	print("work")
+	print(request)
+	selectedFrames = request.form["selectedImages"]
+	print(selectedFrames)
+	ta = get_db()
 
 	#data.update().values(human='yes').where(
     #    users.fID==select([selectedFrames]).\

@@ -51,7 +51,7 @@ def homepage():
 def updateFrames():
     print("C'S GET DEGREES")
     print(request)
-    return render_template("visual_data_UI.html")
+    return "KMS"#render_template("visual_data_UI.html")
 	#selectedFrames = request.form["selectedImages"]
 	#print(selectedFrames)
 	#ta = get_db()
