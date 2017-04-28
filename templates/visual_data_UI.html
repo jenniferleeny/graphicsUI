@@ -1,0 +1,52 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='visual_data_UI.css') }}">
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"> </script>
+		<script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+	</head>
+	<div>
+		<center>
+			<h1>  Visual Data Detector Analysis </h1>
+			<em> Jennifer Lee</em>
+			<br>
+			<em> Advisor: Kayvon Fatahalian </em>
+			<br>
+		</center>
+	</div>
+<style>
+    /*.indent-1 {float: left;}*/
+    /*.indent-1 section {width: 50%; float: left;}*/
+    .indent-1 section{width: 100%;}
+</style>
+
+<div id="button_t">
+<form method="post">
+<button class="button">Previous Page</button>
+  <button name="submit" type="submit" id = "submit" onclick = "getImages()" >Submit Photos</button>
+  <button class="button">Next Page</button>
+</form>
+</div>
+
+<!--
+<div class="selected">
+<img src = "./visual_files/frame0.jpg">
+</div>
+<div class ="floatTL">
+    <p>
+        This is the <br>
+        HTML element <br>
+        which will have <br>
+        SVG placed over<br>
+    </p>
+</div>
+<div class="floatTL">
+    <svg xmlns="https://www.w3.org/TR/SVG11/" version="1.1"
+       width="200px" height="200px">
+    <rect x="5" y="5" width="50" height="50"
+          fill="none" stroke="black" stroke-width="4"/>
+    </svg>  
+</div>
+-->
+<div id = "parent">
+</div>
+</html>
