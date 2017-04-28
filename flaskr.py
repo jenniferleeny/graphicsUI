@@ -121,7 +121,7 @@ def homepage():
 @app.route("/updateFrames", methods=['POST'])
 def updateFrames():
 	print("running updateFrames...")
-	#print(request)
+	print(request)
 	#selectedFrames = request.form["selectedImages"]
 	#print(selectedFrames)
 	#ta = get_db()
