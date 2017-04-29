@@ -121,16 +121,15 @@ def homepage():
 @app.route("/updateFrames", methods=['POST'])
 def updateFrames():
 	print("running updateFrames...")
-	print(request)
-	#selectedFrames = request.form["selectedImages"]
+	#print(request)
+	#selectedFrames = request.form["selectedFrames"]
 	#print(selectedFrames)
-	#ta = get_db()
-
+	data = get_db()
+	return "I WOKE UP LIKE THIS"
 	#data.update().values(human='yes').where(
     #    users.fID==select([selectedFrames]).\
     #                as_scalar()
     #    )
-
 	"""sqlalchemy command...
 	sqlalchemy.sql.expression.update(data)
 	"""

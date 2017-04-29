@@ -85,14 +85,21 @@ window.onload = function() {
 function getImages(){
 	//find all selected images using jquery => store into something
 	console.log("HELLO WORLD");
-	//var selectedFrames = $('#parent').find('.selected');
-	//console.log(selectedFrames);
-	//var jsonArray = JSON.stringify(selectedFrames);
-	var testData = {foo: "Hello", bar: "World"};
-	console.log(testData);
-	$.ajax({
+	var selectedFrames = $('#parent').find('.selected').toArray();
+	console.log("selectedFrames:", selectedFrames);
+	var getId = selectedFrames.map( function(x) {
+		return parseInt( (x.id).substring(1) );
+	});
+	console.log("getId: ", getId);
+	var jsonArray = JSON.stringify( {"selectedFrames": getId} );
+	console.log("jsonArray: ", jsonArray);
+	var response=jQuery.parseJSON(jsonArray);
+	if(typeof response =='object') {
+  		// It is JSON
+  		console.log(" it is an json object ");
+  		$.ajax({
         url: '/updateFrames',
-        data: testData,
+        data: jsonArray,
         datatype: "json",
         type: 'POST',
         success: function(response) {
@@ -100,8 +107,19 @@ function getImages(){
         },
         error: function(error) {
             console.log(error);
-        }
+        }  
     });
+	}
+	else {
+	  if(response ===false)
+	  {
+	     console.log("failed!");
+	  }
+	  else
+	  {
+	    console.log("response wasn't failed but was incorrect");
+	  }
+	}
 	/*
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", "http://127.0.0.1:5000/flaskr.py", true);
