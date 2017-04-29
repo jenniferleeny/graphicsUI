@@ -91,13 +91,9 @@ function getImages(){
 		return parseInt( (x.id).substring(1) );
 	});
 	console.log("getId: ", getId);
-	var jsonArray = JSON.stringify( {"selectedFrames": getId} );
+	var jsonArray = JSON.stringify( {"selectedFrames": getId} ); //{"selectedFrames": getId}
 	console.log("jsonArray: ", jsonArray);
-	var response=jQuery.parseJSON(jsonArray);
-	if(typeof response =='object') {
-  		// It is JSON
-  		console.log(" it is an json object ");
-  		$.ajax({
+	$.ajax({
         url: '/updateFrames',
         data: jsonArray,
         datatype: "json",
@@ -107,19 +103,8 @@ function getImages(){
         },
         error: function(error) {
             console.log(error);
-        }  
+        }
     });
-	}
-	else {
-	  if(response ===false)
-	  {
-	     console.log("failed!");
-	  }
-	  else
-	  {
-	    console.log("response wasn't failed but was incorrect");
-	  }
-	}
 	/*
 	var xhr = new XMLHttpRequest();
 	xhr.open("POST", "http://127.0.0.1:5000/flaskr.py", true);

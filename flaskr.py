@@ -124,7 +124,7 @@ def updateFrames():
 	#print(request)
 	#selectedFrames = request.form["selectedFrames"]
 	#print(selectedFrames)
-	data = get_db()
+	#data = get_db()
 	return "I WOKE UP LIKE THIS"
 	#data.update().values(human='yes').where(
     #    users.fID==select([selectedFrames]).\
