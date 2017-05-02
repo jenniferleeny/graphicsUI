@@ -91,7 +91,7 @@ function getImages(){
 		return parseInt( (x.id).substring(1) );
 	});
 	console.log("getId: ", getId);
-	var jsonArray = JSON.stringify( {"selectedFrames": getId} ); //{"selectedFrames": getId}
+	var jsonArray = JSON.stringify( {"selectedFrames": getId} );
 	console.log("jsonArray: ", jsonArray);
 	$.ajax({
         url: '/updateFrames',
@@ -99,10 +99,10 @@ function getImages(){
         datatype: "json",
         type: 'POST',
         success: function(response) {
-            console.log(response);
+            console.log("Success: ", response);
         },
         error: function(error) {
-            console.log(error);
+            console.log("Failure: ", error);
         }
     });
 	/*

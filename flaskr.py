@@ -43,8 +43,8 @@ class frameEntry(db.Model):
         self.human = human
         #don't we have to assign ID as well?
 
-    #def __repr__(self):
-    #    return "POST %s by %s on %s" %(self.jpeg_name, self.author, self.date)
+    def __repr__(self):
+        return "POST %s by %s on %s" %(self.jpeg_name, self.author, self.date)
 
 db.create_all()
 
@@ -118,22 +118,29 @@ def close_db(error):
 def homepage():
     return render_template("visual_data_UI.html")
 
-@app.route("/updateFrames", methods=['POST'])
+@app.route("/updateFrames", methods=['POST', 'GET'])
 def updateFrames():
 	print("running updateFrames...")
 	#print(request)
 	#selectedFrames = request.form["selectedFrames"]
-	#print(selectedFrames)
-	#data = get_db()
-	return "I WOKE UP LIKE THIS"
+	if (request.method == 'POST'):
+		selectedFrames = request.get_json()
+		#print("selectedFrames" + selectedFrames)
+		return str(selectedFrames)
+	else:
+		return "FAIL\n"
+	#	return "SUCCESS\n"
 	#data.update().values(human='yes').where(
     #    users.fID==select([selectedFrames]).\
     #                as_scalar()
     #    )
+    #db.session.add(post)
+	#db.session.commit()
 	"""sqlalchemy command...
 	sqlalchemy.sql.expression.update(data)
 	"""
 	#selected_frames = request.form["id"]
+
 
 ##don't edit
 if __name__ == "__main__":
