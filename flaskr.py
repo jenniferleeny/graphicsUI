@@ -126,10 +126,10 @@ def updateFrames():
 	if (request.method == 'POST'):
 		selectedFrames = request.get_json(force=True)['selectedFrames']
 		#for i in selectedFrames:
-		row_changed = User.query.filter_by(fID=0)
-		row_changed.human="incorrect"
+		row_changed = User.query.filter_by(fID=0).first()
+		#row_changed.human="incorrect"
 		db.session.commit()
-		return str(selectedFrames)
+		return str(row_changed)
 	else:
 		return "FAIL\n"
 	#data.update().values(human='yes').where(
