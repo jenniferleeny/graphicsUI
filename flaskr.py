@@ -118,28 +118,24 @@ def close_db(error):
 def homepage():
     return render_template("visual_data_UI.html")
 
-@app.route("/updateFrames", methods=['POST', 'GET'])
+@app.route("/updateFrames", methods=['POST'])
 def updateFrames():
 	print("running updateFrames...")
 	#print(request)
 	#selectedFrames = request.form["selectedFrames"]
 	if (request.method == 'POST'):
-		selectedFrames = request.get_json()
-		#print("selectedFrames" + selectedFrames)
+		selectedFrames = request.get_json(force=True)['selectedFrames']
+		#for i in selectedFrames:
+		row_changed = User.query.filter_by(fID=0)
+		row_changed.human="incorrect"
+		db.session.commit()
 		return str(selectedFrames)
 	else:
 		return "FAIL\n"
-	#	return "SUCCESS\n"
 	#data.update().values(human='yes').where(
     #    users.fID==select([selectedFrames]).\
     #                as_scalar()
     #    )
-    #db.session.add(post)
-	#db.session.commit()
-	"""sqlalchemy command...
-	sqlalchemy.sql.expression.update(data)
-	"""
-	#selected_frames = request.form["id"]
 
 
 ##don't edit
