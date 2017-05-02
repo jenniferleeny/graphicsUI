@@ -36,11 +36,10 @@ window.onload = function() {
 			//set svg object
 			var newSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 			var box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-			var w = Math.round(yfactor * L[i]['width']);
-			var h = Math.round(xfactor * L[i]['height']);
-			var y = Math.round(yfactor * L[i]['y']);
-			var x = Math.round(xfactor * L[i]['x']);
-			console.log(L[i]['width'], L[i]['height'], L[i]['y'], L[i]['x']);
+			var w = Math.round(yfactor * L[i]["bbox0"][3]);
+			var h = Math.round(xfactor * L[i]["bbox0"][2]);
+			var y = Math.round(yfactor * L[i]["bbox0"][1]);
+			var x = Math.round(xfactor * L[i]["bbox0"][0]);
 			console.log(w, h, y, x);
 			newSvg.setAttribute('width', newImg.width);
 			newSvg.setAttribute('height', newImg.height);
@@ -82,7 +81,7 @@ window.onload = function() {
 	});
 }
 
-function getImages(){
+function incorrect_frames(){
 	//find all selected images using jquery => store into something
 	console.log("HELLO WORLD");
 	var selectedFrames = $('#parent').find('.selected').toArray();
@@ -94,7 +93,7 @@ function getImages(){
 	var jsonArray = JSON.stringify( {"selectedFrames": getId} );
 	console.log("jsonArray: ", jsonArray);
 	$.ajax({
-        url: '/updateFrames',
+        url: '/wrong_bbox',
         data: jsonArray,
         datatype: "json",
         type: 'POST',
@@ -105,12 +104,29 @@ function getImages(){
             console.log("Failure: ", error);
         }
     });
-	/*
-	var xhr = new XMLHttpRequest();
-	xhr.open("POST", "http://127.0.0.1:5000/flaskr.py", true);
-	xhr.setRequestHeader('Content-Type', 'application/json');
-	xhr.send(JSON.stringify({
-    	value: selectedImages
-	}));
-	*/
+}
+
+function validate_frames(){
+	//find all selected images using jquery => store into something
+	console.log("HELLO WORLD");
+	var selectedFrames = $('#parent').find('.selected').toArray();
+	console.log("selectedFrames:", selectedFrames);
+	var getId = selectedFrames.map( function(x) {
+		return parseInt( (x.id).substring(1) );
+	});
+	console.log("getId: ", getId);
+	var jsonArray = JSON.stringify( {"selectedFrames": getId} );
+	console.log("jsonArray: ", jsonArray);
+	$.ajax({
+        url: '/correct_bbox',
+        data: jsonArray,
+        datatype: "json",
+        type: 'POST',
+        success: function(response) {
+            console.log("Success: ", response);
+        },
+        error: function(error) {
+            console.log("Failure: ", error);
+        }
+    });
 }

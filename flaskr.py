@@ -14,7 +14,7 @@ app.debug = True
 
 db = SQLAlchemy(app)
 
-class frameEntry(db.Model):
+class FrameEntry(db.Model):
     ID = db.Column(db.Integer, primary_key=True)
     fID = db.Column(db.Integer, unique=True)
     jpeg_name = db.Column(db.String(80), unique=True)
@@ -55,7 +55,7 @@ def createPost(fID, bbox0_x, bbox0_y, bbox0_w, bbox0_h,
   '''
   # first verify components
   if len(human) <= 40 and len(jpeg_name)<=80:
-      return frameEntry(fID, jpeg_name, bbox0_x, bbox0_y, bbox0_w, bbox0_h,
+      return FrameEntry(fID, jpeg_name, bbox0_x, bbox0_y, bbox0_w, bbox0_h,
         bbox1_x, bbox1_y, bbox1_h, bbox1_w, human)
   return None
 
@@ -114,29 +114,51 @@ def close_db(error):
     if hasattr(g, 'sqlite_db'):
         g.sqlite_db.close()
 
+def populate_db(file):
+	f = json.load(open(file))
+	for el in f["myimages"]:
+		post = createPost(el["id"], el["x"], el["y"], el["width"], el["height"], 
+			0, 0, 0, 0, el["jpeg_file"], el["human"])
+		if (FrameEntry.query.filter_by(fID=el["id"]).first()==None):
+			db.session.add(post)
+			count+=1
+	return str(count)
+
 @app.route("/")
 def homepage():
     return render_template("visual_data_UI.html")
 
-@app.route("/updateFrames", methods=['POST'])
-def updateFrames():
+@app.route("/wrong_bbox", methods=['POST'])
+def wrong_bbox():
 	print("running updateFrames...")
 	#print(request)
 	#selectedFrames = request.form["selectedFrames"]
 	if (request.method == 'POST'):
+		count = 0
 		selectedFrames = request.get_json(force=True)['selectedFrames']
-		#for i in selectedFrames:
-		row_changed = User.query.filter_by(fID=0).first()
-		#row_changed.human="incorrect"
+		for i in selectedFrames:
+			row_changed = FrameEntry.query.filter_by(fID=i).first()
+			row_changed.human="incorrect"
 		db.session.commit()
-		return str(row_changed)
+		return str(row_changed.human)
 	else:
 		return "FAIL\n"
-	#data.update().values(human='yes').where(
-    #    users.fID==select([selectedFrames]).\
-    #                as_scalar()
-    #    )
 
+@app.route("/correct_bbox", methods=['POST'])
+def correct_bbox():
+	print("running updateFrames...")
+	#print(request)
+	#selectedFrames = request.form["selectedFrames"]
+	if (request.method == 'POST'):
+		count = 0
+		selectedFrames = request.get_json(force=True)['selectedFrames']
+		for i in selectedFrames:
+			row_changed = FrameEntry.query.filter_by(fID=i).first()
+			row_changed.human="correct"
+		db.session.commit()
+		return str(row_changed.human)
+	else:
+		return "FAIL\n"
 
 ##don't edit
 if __name__ == "__main__":
