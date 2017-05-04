@@ -130,9 +130,7 @@ def homepage():
 
 @app.route("/wrong_bbox", methods=['POST'])
 def wrong_bbox():
-	print("running updateFrames...")
-	#print(request)
-	#selectedFrames = request.form["selectedFrames"]
+	print("running wrong_bbox...")
 	if (request.method == 'POST'):
 		count = 0
 		selectedFrames = request.get_json(force=True)['selectedFrames']
@@ -146,9 +144,7 @@ def wrong_bbox():
 
 @app.route("/correct_bbox", methods=['POST'])
 def correct_bbox():
-	print("running updateFrames...")
-	#print(request)
-	#selectedFrames = request.form["selectedFrames"]
+	print("running correct_bbox...")
 	if (request.method == 'POST'):
 		count = 0
 		selectedFrames = request.get_json(force=True)['selectedFrames']

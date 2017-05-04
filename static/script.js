@@ -28,16 +28,16 @@ window.onload = function() {
     			}
     			
     		});
-			var xfactor = 200/newImg.naturalHeight;
-			var yfactor = 300/newImg.naturalWidth;
+			var yfactor = 200/newImg.naturalHeight;
+			var xfactor = 300/newImg.naturalWidth;
 			//console.log(xfactor, yfactor);
 			newImg.height = 200; 
 			newImg.width = 300;
 			//set svg object
 			var newSvg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 			var box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-			var w = Math.round(yfactor * L[i]["bbox0"][3]);
-			var h = Math.round(xfactor * L[i]["bbox0"][2]);
+			var w = Math.round(xfactor * L[i]["bbox0"][3]);
+			var h = Math.round(yfactor * L[i]["bbox0"][2]);
 			var y = Math.round(yfactor * L[i]["bbox0"][1]);
 			var x = Math.round(xfactor * L[i]["bbox0"][0]);
 			console.log(w, h, y, x);
@@ -70,8 +70,9 @@ window.onload = function() {
 			//console.log(divImg.style.top, divSvg.style.top);
 			divImg.appendChild(newImg);
 			divSvg.appendChild(newSvg);
-			itemContainer.appendChild(divSvg);
 			itemContainer.appendChild(divImg);
+			itemContainer.appendChild(divSvg);
+			
 
 			console.log(itemContainer);
 			container.appendChild(itemContainer);
