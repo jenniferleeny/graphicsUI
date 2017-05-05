@@ -51,7 +51,7 @@ def initdb_command():
         diction = json.load(json_data)
     arr = diction["myimages"]
     for i in arr:
-        entry = FrameEntry(i["id"], i["jpeg_file"], i["bbox0"][0], i["bbox0"][1], i["bbox0"][2], i["bbox0"][3], 
+        entry = FrameEntry(i["id"], i["jpeg_file"], i["bbox0"][0], i["bbox0"][1], i["bbox0"][2], i["bbox0"][3],
             NA_FACE, i["scanner"], i["confidence"])
         if entry==None:
             print('entry is None.')
@@ -69,29 +69,29 @@ def homepage():
 
 @app.route("/face_does_not_exist", methods=['POST'])
 def face_does_not_exist():
-	if (request.method == 'POST'):
-		count = 0
-		selectedFrames = request.get_json(force=True)['selectedFrames']
-		for i in selectedFrames:
-			row_changed = FrameEntry.query.filter_by(fID=i).first()
-			row_changed.human = False
-		db.session.commit()
-		return str(row_changed.human)
-	else:
-		return "FAIL\n"
+    if (request.method == 'POST'):
+        count = 0
+        selectedFrames = request.get_json(force=True)['selectedFrames']
+        for i in selectedFrames:
+                row_changed = FrameEntry.query.filter_by(fID=i).first()
+                row_changed.human = False
+        db.session.commit()
+        return str(row_changed.human)
+    else:
+        return "FAIL\n"
 
 @app.route("/face_exists", methods=['POST'])
 def face_exists():
-	if (request.method == 'POST'):
-		count = 0
-		selectedFrames = request.get_json(force=True)['selectedFrames']
-		for i in selectedFrames:
-			row_changed = FrameEntry.query.filter_by(fID=i).first()
-			row_changed.human=True
-		db.session.commit()
-		return str(row_changed.human)
-	else:
-		return "FAIL\n"
+    if (request.method == 'POST'):
+        count = 0
+        selectedFrames = request.get_json(force=True)['selectedFrames']
+        for i in selectedFrames:
+                row_changed = FrameEntry.query.filter_by(fID=i).first()
+                row_changed.human=True
+        db.session.commit()
+        return str(row_changed.human)
+    else:
+        return "FAIL\n"
 
 @app.route("/filter_frames", methods=['POST'])
 def filter_frames():
