@@ -46,13 +46,12 @@
     <div id="frame-container">
       {% for f in frames %}
       <div>
+        <img src= "{{ url_for('static', filename='visual_files/'+f['jpeg_name']) }}" 
+          width="320" height="180">
         <svg xmlns="https://www.w3.org/TR/SVG11/" version="1.1"
            width="320px" height="180px" style="position:relative;top:180">
-          <rect x="{{ f.bbox0_x/2 }}" y="{{ f.bbox0_y/2 }}" width="{{ f.bbox0_w/2 }}" height="{{ f.bbox0_h/2 }}"
-              fill="none" stroke="red" stroke-width="3"/>
+          <rect x="{{ f.bbox0_x/2 }}" y="{{ f.bbox0_y/2 }}" width="{{ f.bbox0_w/2 }}" height="{{ f.bbox0_h/2 }}" fill="none" stroke="red" stroke-width="3"/>
         </svg>
-        <img src= "{{ url_for('static', filename='visual_files/'+f['jpeg_name']) }}" 
-        width="320" height="180">
         <p>
           {{ "ID: " + f.fID|string + ", Scanner's Score: " + f.confidence|string + ", Label: " + f.human }}
         </p>

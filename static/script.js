@@ -1,6 +1,17 @@
 /*
-
+newImg.addEventListener("click", function(e) {
+	console.log("addEventListener fired on " +e.target);
+	if (e.target.className == "") {
+		selectedFrames.add(i);
+		e.target.className = "selected";
+	} else {
+		selectedFrames.delete(i);
+		e.target.className = "";
+	}
+	
+});
 */
+
 function incorrect_frames(){
 	//find all selected images using jquery => store into something
 	console.log("HELLO WORLD");
