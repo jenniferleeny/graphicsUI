@@ -30,6 +30,15 @@ body {
     flex-wrap: wrap;
 }
 
+.frame-entry {
+    position: relative;
+    margin: 5px;
+}
+
+.frame-entry .bbox {
+    position: absolute;
+}
+
 p {
     font-size: 11px;
     font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
@@ -44,12 +53,4 @@ p {
 .item{
     order: <integer>;
     position: absolute;
-}
-
-
-.floatTL{
-    position: relative;
-    margin: 5px;
-    
-
 }
