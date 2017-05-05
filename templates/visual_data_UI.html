@@ -25,23 +25,26 @@
     </center>
 
     <br>
-    <form action="/filter_frames" method="POST">
-      <label for ="confidence"> Scanner's Confidence Score </label>
-      <input type="text" name="confidence">
-      <br>
-      <label for="scanner_isface">Scanner's Label:</label>
-      <input type="text" name = "scanner_isface">
+    <center>
+      <form action="/filter_frames" method="POST">
+        <label for ="confidence"> Scanner's Confidence Score </label>
+        <input type="text" name="confidence">
+        <br>
+        <label for="scanner_isface">Scanner's Label:</label>
+        <input type="text" name = "scanner_isface">
 
-      <label for="conjunction">Conjunction:</label>
-      <input type="checkbox" name="conjunction" value="and">and
-      <input type="checkbox" name="conjunction" value="or">or
+        <label for="conjunction">Conjunction:</label>
+        <input type="checkbox" name="conjunction" value="and">and
+        <input type="checkbox" name="conjunction" value="or">or
 
-      <label for="user_isface">User's Label:</label>
-      <input type="text" name = "user_isface">
+        <label for="user_isface">User's Label:</label>
+        <input type="text" name = "user_isface">
 
-      <input type="submit" value="Submit">
-    </form>
+        <input type="submit" value="Submit">
+      </form>
+    </center>
 
+    <br>
     <div id="frame-container">
       {% for f in frames %}
       <div class="frame-entry">
