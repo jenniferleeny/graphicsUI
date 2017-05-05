@@ -44,9 +44,9 @@
 
     <div id="frame-container">
       {% for f in frames %}
-      <div>
+      <div class="frame-entry">
         <svg xmlns="https://www.w3.org/TR/SVG11/" version="1.1"
-           width="320px" height="180px" style="position:relative;top:180">
+           width="320px" height="180px" class="bbox">
           <rect x="{{ f.bbox0_x/2 }}" y="{{ f.bbox0_y/2 }}" width="{{ f.bbox0_w/2 }}" height="{{ f.bbox0_h/2 }}"
               fill="none" stroke="red" stroke-width="3"/>
         </svg>
