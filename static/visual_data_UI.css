@@ -45,11 +45,3 @@ p {
     order: <integer>;
     position: absolute;
 }
-
-
-.floatTL{
-    position: relative;
-    margin: 5px;
-    
-
-}

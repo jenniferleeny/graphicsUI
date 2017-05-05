@@ -1,23 +1,22 @@
 <!doctype html>
 <html>
-	<head>
+  <head>
     <title>Visual Data Detector UI</title>
-		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='visual_data_UI.css') }}">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"> </script>
-		<script src="{{ url_for('static', filename='script.js') }}"></script>
-
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='visual_data_UI.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"> </script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
   </head>
   <body>
     <header>
-  		<center>
-  			<h1>  Visual Data Detector User Interface </h1>
-  			<em> Jennifer Lee</em>
-  			<br>
-  			<em> Advisor: Kayvon Fatahalian </em>
-  			<br>
-  		</center>
-  	</header>
-  
+      <center>
+        <h1>  Visual Data Detector User Interface </h1>
+        <em> Jennifer Lee</em>
+        <br>
+        <em> Advisor: Kayvon Fatahalian </em>
+        <br>
+      </center>
+    </header>
+
     <div id="button_t">
       <button class="button">Previous Page</button>
       <button class="button" onclick="face_does_not_exist()">Incorrect frames</button>
@@ -27,20 +26,20 @@
 
     <br>
     <form action="/filter_frames" method="POST">
-                <label for ="confidence"> Scanner's Confidence Score </label>
-                <input type="text" name="confidence">
-                <br>
-                <label for="scanner_isface">Scanner's Label:</label>
-                <input type="text" name = "scanner_isface"> 
+      <label for ="confidence"> Scanner's Confidence Score </label>
+      <input type="text" name="confidence">
+      <br>
+      <label for="scanner_isface">Scanner's Label:</label>
+      <input type="text" name = "scanner_isface">
 
-                <label for="conjunction">Conjunction:</label>
-                <input type="checkbox" name="conjunction" value="and">and
-                <input type="checkbox" name="conjunction" value="or">or
+      <label for="conjunction">Conjunction:</label>
+      <input type="checkbox" name="conjunction" value="and">and
+      <input type="checkbox" name="conjunction" value="or">or
 
-                <label for="user_isface">User's Label:</label>
-                <input type="text" name = "user_isface">
+      <label for="user_isface">User's Label:</label>
+      <input type="text" name = "user_isface">
 
-                <input type="submit" value="Submit">
+      <input type="submit" value="Submit">
     </form>
 
     <div id="frame-container">
@@ -51,23 +50,13 @@
           <rect x="{{ f.bbox0_x/2 }}" y="{{ f.bbox0_y/2 }}" width="{{ f.bbox0_w/2 }}" height="{{ f.bbox0_h/2 }}"
               fill="none" stroke="red" stroke-width="3"/>
         </svg>
-        <img src= "{{ url_for('static', filename='visual_files/'+f['jpeg_name']) }}" 
-        width="320" height="180">
+        <img src= "{{ url_for('static', filename='visual_files/'+f['jpeg_name']) }}"
+        width="320px" height="180px">
         <p>
           {{ "ID: " + f.fID|string + ", Scanner's Score: " + f.confidence|string + ", Label: " + f.human }}
         </p>
       </div>
       {% endfor %}
-      <div style="background-color:red;width:100px;height:100px"></div>
-      <div style="background-color:blue;width:100px;height:100px"></div>
-      <div style="background-color:red;width:100px;height:100px"></div>
-      <div style="background-color:blue;width:100px;height:100px"></div>
-      <div style="background-color:red;width:100px;height:100px"></div>
-      <div style="background-color:blue;width:100px;height:100px"></div>
-      <div style="background-color:red;width:100px;height:100px"></div>
-      <div style="background-color:blue;width:100px;height:100px"></div>
-      <div style="background-color:red;width:100px;height:100px"></div>
-      <div style="background-color:blue;width:100px;height:100px"></div>
     </div>
   </body>
 </html>
