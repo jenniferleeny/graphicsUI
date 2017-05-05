@@ -6,8 +6,6 @@ window.onload = function() {
 	var intViewportWidth = window.innerWidth;
 	var container = document.createElement("container");
 	$.getJSON("./static/visual_data_UI.json", function(data) {
-		console.log("About to request JSON");
-		console.log(data); 
 		var L = data["myimages"];
 		console.log(L);
 		for (var i = 0; i < L.length ; i++) {
@@ -60,23 +58,26 @@ window.onload = function() {
 			//positions of images (Mathy part!)
 			var imgWidth = newImg.width;
 			var imgHeight = newImg.height;
-			var margin = 5;
+			var margin = 10;
 			var max = Math.floor(intViewportWidth/(margin+imgWidth));
-			divImg.style.left = 5+(imgWidth+margin)*(i%max) +'px'; 
-			divSvg.style.left = 5+(imgWidth+margin)*(i%max) +'px'
-			divImg.style.top =  150+(imgHeight+margin)*Math.floor(i/max) +'px';
-			divSvg.style.top =  150+(imgHeight+margin)*Math.floor(i/max) +'px';
+			divImg.style.left = margin+(imgWidth+margin)*(i%max) +'px'; 
+			divSvg.style.left = margin+(imgWidth+margin)*(i%max) +'px'
+			divImg.style.top =  300+(imgHeight+4*margin)*Math.floor(i/max) +'px';
+			divSvg.style.top =  300+(imgHeight+4*margin)*Math.floor(i/max) +'px';
 			//console.log(divImg.style.left, divSvg.style.left);
 			//console.log(divImg.style.top, divSvg.style.top);
 			divImg.appendChild(newImg);
 			divSvg.appendChild(newSvg);
-			itemContainer.appendChild(divImg);
 			itemContainer.appendChild(divSvg);
-			
+			itemContainer.appendChild(divImg);
+			//creating caption
+			var s = document.createTextNode("ID: " + L[i]["id"] + ", Scanner's Score: " + 0.30 
+				+ ", Label: " + L[i]["human"]);
+			var caption = document.createElement("p");
+			caption.appendChild(s);
+			divImg.appendChild(caption);
 
-			console.log(itemContainer);
 			container.appendChild(itemContainer);
-			
 		}
 		parentContainer.appendChild(container);
 	});

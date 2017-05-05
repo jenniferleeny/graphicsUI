@@ -156,6 +156,26 @@ def correct_bbox():
 	else:
 		return "FAIL\n"
 
+def throw_error_popup():
+    pass
+
+@app.route("/filter_frames", methods=['POST'])
+def filter_frames():
+    if (request.method == 'POST'):
+        con_score = request.form['confidence']
+        scanner_isface = request.form['scanner_isface']
+        #conjunction = request.form['conjunction']
+        #user_isface = request.form['human_isface']
+        if con_score=="":
+            return "con_score==empty string"
+        elif con_score==None:
+            return "con_score==None"
+        else:
+            return "bob"
+    else:
+        return "FAIL\n"
+
+
 ##don't edit
 if __name__ == "__main__":
     app.run()

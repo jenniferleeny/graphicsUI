@@ -25,27 +25,25 @@
   <button name="submit" type="button" onclick = "validate_frames()" >Correct frames</button>
   <button class="button">Next Page</button>
 </div>
+<br>
+<form action="/filter_frames" method="POST">
+            <label for ="confidence"> Scanner's Confidence Score </label>
+            <input type="text" name="confidence">
+            <br>
+            <label for="scanner_isface">Scanner's Label:</label>
+            <input type="text" name = "scanner_isface"> 
 
-<!--
-<div class="selected">
-<img src = "./visual_files/frame0.jpg">
-</div>
-<div class ="floatTL">
-    <p>
-        This is the <br>
-        HTML element <br>
-        which will have <br>
-        SVG placed over<br>
-    </p>
-</div>
-<div class="floatTL">
-    <svg xmlns="https://www.w3.org/TR/SVG11/" version="1.1"
-       width="200px" height="200px">
-    <rect x="5" y="5" width="50" height="50"
-          fill="none" stroke="black" stroke-width="4"/>
-    </svg>  
-</div>
--->
+          <label for="conjunction">Conjunction:</label>
+            <input type="checkbox" name="conjunction" value="and">and
+            <input type="checkbox" name="conjunction" value="or">or
+
+            <label for="user_isface">User's Label:</label>
+            <input type="text" name = "user_isface">
+
+            <input type="submit" value="Submit">
+
+        </form>
+
 <div id = "parent">
 </div>
 </html>
