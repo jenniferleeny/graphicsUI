@@ -32,6 +32,7 @@ body {
 
 .frame-entry {
     position: relative;
+    margin: 5px;
 }
 
 .frame-entry .bbox {
