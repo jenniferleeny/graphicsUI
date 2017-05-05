@@ -14,6 +14,10 @@ app.debug = True
 
 db = SQLAlchemy(app)
 
+YES_FACE = "yes"
+NO_FACE = "no"
+NA_FACE = "na"
+
 class FrameEntry(db.Model):
     ID = db.Column(db.Integer, primary_key=True)
     fID = db.Column(db.Integer, unique=True)
@@ -22,65 +26,22 @@ class FrameEntry(db.Model):
     bbox0_y = db.Column(db.Integer)
     bbox0_h = db.Column(db.Integer)
     bbox0_w = db.Column(db.Integer)
-    bbox1_x = db.Column(db.Integer)
-    bbox1_y = db.Column(db.Integer)
-    bbox1_h = db.Column(db.Integer)
-    bbox1_w = db.Column(db.Integer)
     human = db.Column(db.String(40))
+    confidence = db.Column(db.Numeric(0,3))
+    scanner = db.Column(db.Boolean)
 
-    def __init__(self, fID, jpeg_name, bbox0_x, bbox0_y, bbox0_w, bbox0_h, 
-        bbox1_x, bbox1_y, bbox1_h, bbox1_w, human):
+    def __init__(self, fID, jpeg_name, bbox0_x, bbox0_y, bbox0_w, bbox0_h, human, scanner,confidence):
         self.fID = fID
         self.jpeg_name = jpeg_name
         self.bbox0_x = bbox0_x
         self.bbox0_y = bbox0_y
         self.bbox0_h = bbox0_h
         self.bbox0_w = bbox0_w
-        self.bbox1_x = bbox1_x
-        self.bbox1_y = bbox1_y
-        self.bbox1_h = bbox1_h
-        self.bbox1_w = bbox1_w
         self.human = human
-        #don't we have to assign ID as well?
-
-    def __repr__(self):
-        return "POST %s by %s on %s" %(self.jpeg_name, self.author, self.date)
+        self.confidence = confidence
+        self.scanner = scanner
 
 db.create_all()
-
-def createPost(fID, bbox0_x, bbox0_y, bbox0_w, bbox0_h, 
-    bbox1_x, bbox1_y, bbox1_w, bbox1_h, jpeg_name, human):
-  '''
-  Creates a BlogEntry if given valid parameters, else return None.
-  '''
-  # first verify components
-  if len(human) <= 40 and len(jpeg_name)<=80:
-      return FrameEntry(fID, jpeg_name, bbox0_x, bbox0_y, bbox0_w, bbox0_h,
-        bbox1_x, bbox1_y, bbox1_h, bbox1_w, human)
-  return None
-
-
-# Load default config and override config from an environment variable
-'''
-app.config.update(dict(
-    DATABASE=os.path.join(app.root_path, 'flaskr.db'),
-    SECRET_KEY='development key',
-    USERNAME='admin',
-    PASSWORD='default'
-))
-app.config.from_envvar('FLASKR_SETTINGS', silent=True)
-'''
-def connect_db():
-    """Connects to the specific database."""
-    rv = sqlite3.connect(app.config['DATABASE'])
-    rv.row_factory = sqlite3.Row
-    return rv
-
-def init_db():
-    db = get_db()
-    with app.open_resource('schema.sql', mode='r') as f:
-        db.cursor().executescript(f.read())
-    db.commit()
 
 #@app.cli.command('initdb')
 def initdb_command():
@@ -90,74 +51,47 @@ def initdb_command():
         diction = json.load(json_data)
     arr = diction["myimages"]
     for i in arr:
-        post = createPost(i["id"], i["x"], i["y"], i["width"], i["height"], 
-            0, 0, 0, 0, i["jpeg_file"], "n/a")
-        if post==None:
-            print('post is None.')
+        entry = FrameEntry(i["id"], i["jpeg_file"], i["bbox0"][0], i["bbox0"][1], i["bbox0"][2], i["bbox0"][3], 
+            NA_FACE, i["scanner"], i["confidence"])
+        if entry==None:
+            print('entry is None.')
         else:
-            db.session.add(post)
-            db.session.commit()
-            return redirect(url_for("homepage"))
+            db.session.add(entry)
+    db.session.commit()
     print('Initialized the database.')
-
-def get_db():
-    """Opens a new database connection if there is none yet for the
-    current application context.
-    """
-    if not hasattr(g, 'sqlite_db'):
-        g.sqlite_db = connect_db()
-    return g.sqlite_db
-
-@app.teardown_appcontext
-def close_db(error):
-    """Closes the database again at the end of the request."""
-    if hasattr(g, 'sqlite_db'):
-        g.sqlite_db.close()
-
-def populate_db(file):
-	f = json.load(open(file))
-	for el in f["myimages"]:
-		post = createPost(el["id"], el["x"], el["y"], el["width"], el["height"], 
-			0, 0, 0, 0, el["jpeg_file"], el["human"])
-		if (FrameEntry.query.filter_by(fID=el["id"]).first()==None):
-			db.session.add(post)
-			count+=1
-	return str(count)
+    return redirect(url_for("homepage"))
 
 @app.route("/")
 def homepage():
-    return render_template("visual_data_UI.html")
+    # initdb_command()
+    frames = FrameEntry.query.order_by(FrameEntry.fID)
+    return render_template("visual_data_UI.html", frames=frames)
 
-@app.route("/wrong_bbox", methods=['POST'])
-def wrong_bbox():
-	print("running wrong_bbox...")
+@app.route("/face_does_not_exist", methods=['POST'])
+def face_does_not_exist():
 	if (request.method == 'POST'):
 		count = 0
 		selectedFrames = request.get_json(force=True)['selectedFrames']
 		for i in selectedFrames:
 			row_changed = FrameEntry.query.filter_by(fID=i).first()
-			row_changed.human="incorrect"
+			row_changed.human = False
 		db.session.commit()
 		return str(row_changed.human)
 	else:
 		return "FAIL\n"
 
-@app.route("/correct_bbox", methods=['POST'])
-def correct_bbox():
-	print("running correct_bbox...")
+@app.route("/face_exists", methods=['POST'])
+def face_exists():
 	if (request.method == 'POST'):
 		count = 0
 		selectedFrames = request.get_json(force=True)['selectedFrames']
 		for i in selectedFrames:
 			row_changed = FrameEntry.query.filter_by(fID=i).first()
-			row_changed.human="correct"
+			row_changed.human=True
 		db.session.commit()
 		return str(row_changed.human)
 	else:
 		return "FAIL\n"
-
-def throw_error_popup():
-    pass
 
 @app.route("/filter_frames", methods=['POST'])
 def filter_frames():

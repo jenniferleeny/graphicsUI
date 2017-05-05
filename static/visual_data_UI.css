@@ -12,11 +12,22 @@ body {
 .button:hover {
 	background-color: #DCDCDC
 }
-.container {
+
+#button_t button {
+/*.button {*/ 
+    width: 150px;
+    height: 40px;   
+    background: transparent;
+    border: 2px solid black;
+    color: black;
+    font-size:14px;
+    font-weight:600;
+}
+
+#frame-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    position: absolute;
 }
 
 p {
@@ -35,19 +46,9 @@ p {
     position: absolute;
 }
 
-#button_t button {
-/*.button {*/ 
-    width: 150px;
-    height: 40px;   
-    background: transparent;
-    border: 2px solid black;
-    color: black;
-    font-size:14px;
-    font-weight:600;
-}
 
 .floatTL{
-    position: absolute;
+    position: relative;
     margin: 5px;
     
 

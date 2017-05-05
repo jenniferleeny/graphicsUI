@@ -1,49 +1,73 @@
+<!doctype html>
 <html>
 	<head>
+    <title>Visual Data Detector UI</title>
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='visual_data_UI.css') }}">
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"> </script>
-		<script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
-	</head>
-	<div>
-		<center>
-			<h1>  Visual Data Detector Analysis </h1>
-			<em> Jennifer Lee</em>
-			<br>
-			<em> Advisor: Kayvon Fatahalian </em>
-			<br>
-		</center>
-	</div>
-<style>
-    /*.indent-1 {float: left;}*/
-    /*.indent-1 section {width: 50%; float: left;}*/
-    .indent-1 section{width: 100%;}
-</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"> </script>
+		<script src="{{ url_for('static', filename='script.js') }}"></script>
 
-<div id="button_t">
-<button class="button">Previous Page</button>
-  <button name="submit" type="button" onclick = "incorrect_frames()" >Incorrect frames</button>
-  <button name="submit" type="button" onclick = "validate_frames()" >Correct frames</button>
-  <button class="button">Next Page</button>
-</div>
-<br>
-<form action="/filter_frames" method="POST">
-            <label for ="confidence"> Scanner's Confidence Score </label>
-            <input type="text" name="confidence">
-            <br>
-            <label for="scanner_isface">Scanner's Label:</label>
-            <input type="text" name = "scanner_isface"> 
+  </head>
+  <body>
+    <header>
+  		<center>
+  			<h1>  Visual Data Detector User Interface </h1>
+  			<em> Jennifer Lee</em>
+  			<br>
+  			<em> Advisor: Kayvon Fatahalian </em>
+  			<br>
+  		</center>
+  	</header>
+  
+    <div id="button_t">
+      <button class="button">Previous Page</button>
+      <button class="button" onclick="face_does_not_exist()">Incorrect frames</button>
+      <button class="button" onclick="face_exists()">Correct frames</button>
+      <button class="button">Next Page</button>
+    </div>
 
-          <label for="conjunction">Conjunction:</label>
-            <input type="checkbox" name="conjunction" value="and">and
-            <input type="checkbox" name="conjunction" value="or">or
+    <br>
+    <form action="/filter_frames" method="POST">
+                <label for ="confidence"> Scanner's Confidence Score </label>
+                <input type="text" name="confidence">
+                <br>
+                <label for="scanner_isface">Scanner's Label:</label>
+                <input type="text" name = "scanner_isface"> 
 
-            <label for="user_isface">User's Label:</label>
-            <input type="text" name = "user_isface">
+                <label for="conjunction">Conjunction:</label>
+                <input type="checkbox" name="conjunction" value="and">and
+                <input type="checkbox" name="conjunction" value="or">or
 
-            <input type="submit" value="Submit">
+                <label for="user_isface">User's Label:</label>
+                <input type="text" name = "user_isface">
 
-        </form>
+                <input type="submit" value="Submit">
+    </form>
 
-<div id = "parent">
-</div>
+    <div id="frame-container">
+      {% for f in frames %}
+      <div>
+        <svg xmlns="https://www.w3.org/TR/SVG11/" version="1.1"
+           width="320px" height="180px" style="position:relative;top:180">
+          <rect x="{{ f.bbox0_x/2 }}" y="{{ f.bbox0_y/2 }}" width="{{ f.bbox0_w/2 }}" height="{{ f.bbox0_h/2 }}"
+              fill="none" stroke="red" stroke-width="3"/>
+        </svg>
+        <img src= "{{ url_for('static', filename='visual_files/'+f['jpeg_name']) }}" 
+        width="320" height="180">
+        <p>
+          {{ "ID: " + f.fID|string + ", Scanner's Score: " + f.confidence|string + ", Label: " + f.human }}
+        </p>
+      </div>
+      {% endfor %}
+      <div style="background-color:red;width:100px;height:100px"></div>
+      <div style="background-color:blue;width:100px;height:100px"></div>
+      <div style="background-color:red;width:100px;height:100px"></div>
+      <div style="background-color:blue;width:100px;height:100px"></div>
+      <div style="background-color:red;width:100px;height:100px"></div>
+      <div style="background-color:blue;width:100px;height:100px"></div>
+      <div style="background-color:red;width:100px;height:100px"></div>
+      <div style="background-color:blue;width:100px;height:100px"></div>
+      <div style="background-color:red;width:100px;height:100px"></div>
+      <div style="background-color:blue;width:100px;height:100px"></div>
+    </div>
+  </body>
 </html>
